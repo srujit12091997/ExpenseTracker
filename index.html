@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Expense Tracker</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
@@ -15,12 +16,18 @@
             <div class="balance-amount" id="balance">$0.00</div>
             <div class="summary">
                 <div class="summary-item income-summary">
-                    <h3>Income</h3>
-                    <p id="income-total">$0.00</p>
+                    <div class="summary-icon">↑</div>
+                    <div class="summary-details">
+                        <h3>Income</h3>
+                        <p id="income-total">$0.00</p>
+                    </div>
                 </div>
                 <div class="summary-item expense-summary">
-                    <h3>Expenses</h3>
-                    <p id="expense-total">$0.00</p>
+                    <div class="summary-icon">↓</div>
+                    <div class="summary-details">
+                        <h3>Expenses</h3>
+                        <p id="expense-total">$0.00</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,26 +38,29 @@
             <form id="transaction-form">
                 <div class="form-group">
                     <label for="description">Description</label>
-                    <input type="text" id="description" required>
+                    <input type="text" id="description" required placeholder="Enter description">
                 </div>
-                <div class="form-group">
-                    <label for="amount">Amount</label>
-                    <input type="number" id="amount" required step="0.01">
-                </div>
-                <div class="form-group">
-                    <label for="type">Type</label>
-                    <select id="type" required>
-                        <option value="income">Income</option>
-                        <option value="expense">Expense</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="amount">Amount ($)</label>
+                        <input type="number" id="amount" required step="0.01" min="0.01" placeholder="0.00">
+                    </div>
+                    <div class="form-group">
+                        <label for="type">Type</label>
+                        <select id="type" required>
+                            <option value="expense">Expense</option>
+                            <option value="income">Income</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="form-group">
                     <label for="category">Category</label>
                     <select id="category" required>
-                        <option value="salary">Salary</option>
                         <option value="groceries">Groceries</option>
                         <option value="rent">Rent</option>
                         <option value="entertainment">Entertainment</option>
+                        <option value="transport">Transport</option>
+                        <option value="utilities">Utilities</option>
                         <option value="other">Other</option>
                     </select>
                 </div>
@@ -58,18 +68,26 @@
             </form>
         </div>
 
-        <!-- Transactions List Card -->
+        <!-- Recent Transactions Card -->
         <div class="card">
-            <h2>Recent Transactions</h2>
+            <div class="card-header">
+                <h2>Recent Transactions</h2>
+                <span class="subtitle">Last 5 transactions</span>
+            </div>
             <div class="transactions" id="transactions-list">
                 <!-- Transactions will be added here -->
             </div>
         </div>
 
-        <!-- Chart Card -->
+        <!-- Spending Analysis Card -->
         <div class="card">
-            <h2>Spending Analysis</h2>
-            <div id="chart"></div>
+            <div class="card-header">
+                <h2>Spending Analysis</h2>
+                <span class="subtitle">Category breakdown</span>
+            </div>
+            <div class="chart-container">
+                <canvas id="chart"></canvas>
+            </div>
         </div>
     </div>
 
